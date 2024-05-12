@@ -7,8 +7,8 @@ from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
-from app_tech.models import Structural, Leadership, Standard
-from app_tech.serializers import StructuralSerializer, LeadershipSerializer, StandardSerializer
+from app_tech.models import Structural, Leadership, Standard, Electronic_Standard, Connection, Building
+from app_tech.serializers import StructuralSerializer, LeadershipSerializer, StandardSerializer, ElectronicStandardSerializer, ConnectionSerializer, BuildingSerializer
 
 
 class StructuralViewSet(viewsets.ModelViewSet):
@@ -28,3 +28,20 @@ class StandardViewSet(viewsets.ModelViewSet):
     serializer_class = StandardSerializer
     permission_classes = [MultiPartParser]
 
+
+class ElectronicStandardViewSet(viewsets.ModelViewSet):
+    queryset = Electronic_Standard.objects.all()
+    serializer_class = ElectronicStandardSerializer
+    permission_classes = [MultiPartParser]
+
+
+class ConnectionViewSet(viewsets.ModelViewSet):
+    queryset = Connection.objects.all()
+    serializer_class = ConnectionSerializer
+    permission_classes = [MultiPartParser]
+
+
+class BuildingViewSet(viewsets.ModelViewSet):
+    queryset = Building.objects.all()
+    serializer_class = BuildingSerializer
+    permission_classes = [MultiPartParser]
