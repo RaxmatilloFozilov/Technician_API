@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from app_tech.models import Leadership, Structural, Standard, Connection, Building, Electronic_Standard
+from app_tech.models import Leadership, Structural, Standard, Connection, Building, Electronic_Standard, Dictionary
 
 
 class LeadershipSerializer(serializers.ModelSerializer):
@@ -42,3 +42,36 @@ class ElectronicStandardSerializer(serializers.ModelSerializer):
         model = Electronic_Standard
         fields = '__all__'
         # fields = ['keyword', 'document_number', 'document_category', 'document_year', 'conditional_symbol']
+
+
+class DictionarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dictionary
+        fields = ('id', 'standard_number',)
+
+    # def standard_number(self,obj):
+    #     try:
+    #         lang = self.context['request'].GET.get['language']
+    #         if lang == 'en':
+    #             return obj.language_en
+    #         return obj.language_uz
+    #     except:
+    #         return obj.language_uz
+
+    def standard_number(self,obj):
+        try:
+            lang = self.context['request'].GET.get['language']
+            if lang == 'en':
+                return obj.language_en
+            elif lang == 'uz':
+                return obj.language_uz
+            elif lang == 'ru':
+                return obj.language_ru
+            elif lang == 'turk':
+                return obj.language_turk
+        except:
+            return obj.language_uz
+
+
+
+

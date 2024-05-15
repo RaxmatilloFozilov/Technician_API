@@ -66,3 +66,19 @@ class Building(models.Model):
 
     def __str__(self):
         return self.characters
+
+
+class Dictionary(models.Model):
+    standard_number = models.IntegerField()
+    language_code = models.CharField(max_length=15)
+    language_ru = models.CharField(max_length=250)
+    language_uz = models.CharField(max_length=250)
+    language_turk = models.CharField(max_length=250)
+    language_en = models.CharField(max_length=250)
+
+    def __str__(self):
+        return f'{self.standard_number} - {self.language_code} - {self.language_uz}'
+
+    class Meta:
+        db_table = 'dictionary'
+        verbose_name = 'Dictionary'
