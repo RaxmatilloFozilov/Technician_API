@@ -49,14 +49,6 @@ class DictionarySerializer(serializers.ModelSerializer):
         model = Dictionary
         fields = ('id', 'standard_number',)
 
-    # def standard_number(self,obj):
-    #     try:
-    #         lang = self.context['request'].GET.get['language']
-    #         if lang == 'en':
-    #             return obj.language_en
-    #         return obj.language_uz
-    #     except:
-    #         return obj.language_uz
 
     def standard_number(self,obj):
         try:
@@ -69,6 +61,7 @@ class DictionarySerializer(serializers.ModelSerializer):
                 return obj.language_ru
             elif lang == 'turk':
                 return obj.language_turk
+
         except:
             return obj.language_uz
 
